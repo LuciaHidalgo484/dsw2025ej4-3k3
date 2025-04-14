@@ -4,17 +4,32 @@
  */
 package views;
 
+import domain.Especie;
+import domain.PaisOficial;
+import domain.Sector;
+import domain.TipoAlimentacion;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.InvalidPropertiesFormatException;
+import java.awt.event.ActionListener;
+import domain.*;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author lauty
  */
-public class CargarAnimales extends javax.swing.JFrame {
+public final class CargarAnimales extends javax.swing.JFrame {
 
     /**
      * Creates new form CargarAnimales
      */
     public CargarAnimales() {
         initComponents();
+        cargarDatos();
+        //habilitarValorfijo();
+        añadirListeners();
     }
 
     /**
@@ -26,27 +41,380 @@ public class CargarAnimales extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CbEspecie = new javax.swing.JComboBox<>();
+        CbSector = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        CbPaisOrigen = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        CbTipoAlimentacion = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        botonAñadir = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        Edad = new javax.swing.JTextField();
+        ValorFijo = new javax.swing.JTextField();
+        Peso = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        CbEspecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbEspecieActionPerformed(evt);
+            }
+        });
+
+        CbSector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbSectorActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Especie:");
+
+        jLabel2.setText("Sector:");
+
+        CbPaisOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Australia", "Sudafrica", "Madagascar", "Japon" }));
+
+        jLabel4.setText("Pais:");
+
+        jLabel5.setText("Tipo de Alimentacion:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel6.setText("Registro Animal:");
+
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+
+        botonVolver.setText("Volver");
+
+        jLabel7.setText("Valor fijo:");
+
+        jLabel8.setText("Edad:");
+
+        jLabel9.setText("Peso (kg):");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAñadir)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel3))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CbPaisOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CbEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CbSector, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(4, 4, 4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CbTipoAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(Peso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                        .addComponent(Edad, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ValorFijo, javax.swing.GroupLayout.Alignment.LEADING)))))))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CbEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CbSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CbPaisOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CbTipoAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(ValorFijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8))
+                    .addComponent(Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(Peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonVolver, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botonAñadir)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CbEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbEspecieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbEspecieActionPerformed
+
+    private void CbSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbSectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbSectorActionPerformed
+
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAñadirActionPerformed
+
+    public JComboBox<String> getCbEspecie() {
+        return CbEspecie;
+    }
+
+    public void setCbEspecie(JComboBox<String> CbEspecie) {
+        this.CbEspecie = CbEspecie;
+    }
+
+    public JComboBox<String> getCbPaisOrigen() {
+        return CbPaisOrigen;
+    }
+
+    public void setCbPaisOrigen(JComboBox<String> CbPaisOrigen) {
+        this.CbPaisOrigen = CbPaisOrigen;
+    }
+
+    public JComboBox<String> getCbSector() {
+        return CbSector;
+    }
+
+    public void setCbSector(JComboBox<String> CbSector) {
+        this.CbSector = CbSector;
+    }
+
+    public JComboBox<String> getCbTipoAlimentacion() {
+        return CbTipoAlimentacion;
+    }
+
+    public void setCbTipoAlimentacion(JComboBox<String> CbTipoAlimentacion) {
+        this.CbTipoAlimentacion = CbTipoAlimentacion;
+    }
+
+//    public  String getEdad() {
+//        return Edad.getText();
+//    }
+ public int getEdad() {
+       int num=0;
+        try{
+            num = Integer.parseInt(Edad.getText());
+        }
+        catch(Exception e){
+            System.out.println("Error en tipo de datos");
+        }
+        return num;
+    }
+       public void  setEdad(int edad){
+        Edad.setText(String.valueOf(edad));
+    }
+    public void setEdad(String edad) {
+        Edad.setText(edad);
+    }
+
+//    public double getPeso() {
+//        return Peso.getText();
+//    }
+ public double getPeso() {
+       int numero=0;
+        try{
+            numero = Integer.parseInt(Peso.getText());
+        }
+        catch(Exception e){
+            System.out.println("Error en tipo de datos");
+        }
+        return numero;
+    }
+       public void  setPeso(double peso){
+        Peso.setText(String.valueOf(peso));
+    }
+    
+       public double getValorFijo() {
+       int numero=0;
+        try{
+            numero = Integer.parseInt(ValorFijo.getText());
+        }
+        catch(Exception e){
+            System.out.println("Error en tipo de datos");
+        }
+        return numero;
+    }
+       public void  setValorFijo(double vf){
+        ValorFijo.setText(String.valueOf(vf));
+    }
+  
+
+   
+    
+    
+    
+    
+    public void cargarDatos(){
+        ArrayList<Especie> especies=Controlador.getEspecies();
+        
+        for (Especie especie : especies) {
+           CbEspecie.addItem(especie.getNombre());
+        }
+        
+        ArrayList<Sector> sectores= Controlador.getSectores();
+        
+        for (Sector sector : sectores) {
+        CbSector.addItem(String.valueOf(sector.getNumero()));
+        }
+        
+        ArrayList<PaisOficial> paises= Controlador.getPaises();
+        for (PaisOficial pais : paises) {
+            CbPaisOrigen.addItem(pais.getNombre());
+        }
+        for(TipoAlimentacion tipo: Controlador.getTiposAlimentacion()){
+            CbTipoAlimentacion.addItem(String.valueOf(tipo));
+            
+        }
+        }
+    
+    
+       public void añadirListeners(){
+          botonVolver.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  dispose();
+              } }
+          );
+          CbTipoAlimentacion.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  //habilitarValorFijo();
+                } });
+          
+          botonAñadir.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  if( CbTipoAlimentacion.getSelectedItem() == TipoAlimentacion.HERBIVORO){
+//                      try{
+//                          Controlador.guardaranimal(new Herbivoro(String.valueOf((int) CbEspecie.getSelectedItem()), getEdad(), CbSector.getS,getPeso(), getValorFijo(),String.valueOf(CbPaisOrigen.getSelectedItem())));
+//                          {
+//                              
+//                          }
+//                      }
+                    
+  
+
+//                 String nombreEspecie = (String) CbEspecie.getSelectedItem();
+//                 Especie es = new Especie(nombreEspecie,?,?);
+//                  Herbivoro animal= new Herbivoro(
+//                 
+//                  getEdad(),
+//                  getPeso(),      
+//                  es.getNombre(),
+//                  
+//                  CbSector.getSelectedItem(),
+//                  getValorFijo(),
+//                  CbPaisOrigen.getSelectedItem());
+//                  Controlador.guardaranimal(animal);
+//                  }
+              }
+            
+              
+          };
+          
+
+              });
+                  }
+                  
+       
+     public Especie getEspecie(){
+         String nombreEspecie=String.valueOf(CbEspecie.getSelectedItem());
+         for (Especie especie : Controlador.getEspecies()) {
+             if(nombreEspecie.equals(especie.getNombre()))
+                 {
+                    return especie;
+                 }
+             
+         }
+         return null;
+     }
+ 
+    
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CbEspecie;
+    private javax.swing.JComboBox<String> CbPaisOrigen;
+    private javax.swing.JComboBox<String> CbSector;
+    private javax.swing.JComboBox<String> CbTipoAlimentacion;
+    private javax.swing.JTextField Edad;
+    private javax.swing.JTextField Peso;
+    private javax.swing.JTextField ValorFijo;
+    private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

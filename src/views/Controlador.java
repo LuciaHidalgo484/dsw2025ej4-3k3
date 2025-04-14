@@ -18,6 +18,15 @@ public class Controlador {
         return Persistencia.getSectores();
     }
     
+     public static ArrayList<PaisOficial> getPaises(){
+        return Persistencia.getPaises();
+    }
+
+     public static void guardaranimal(Mamifero mamifero){
+        Persistencia.agregaAnimal(mamifero);
+    }
+    
+    
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
         for(Mamifero animal : Persistencia.getAnimales()){
@@ -38,7 +47,7 @@ public class Controlador {
     }
     
     
-    public static void Agregarr(){
+    public static void Agregar(){
         CargarAnimales cargar = new CargarAnimales();
                cargar.setVisible(true);
     }
@@ -46,6 +55,11 @@ public class Controlador {
     public static void salir(CargarAnimales cargar){
         cargar.dispose();
     }
+    
+    
+    
+    
+    
     
     
     

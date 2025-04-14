@@ -14,6 +14,11 @@ public class Especie {
         this.tipoAlimentacion = tipoAlimentacion;
     }
 
+    public Especie(String nombre) {
+        this.nombre = nombre;
+    }
+ 
+    
     public String getNombre() {
         return nombre;
     }

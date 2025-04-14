@@ -23,7 +23,7 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
-            new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
+            new String[] { "Especie", "Edad", "Peso", "Sector", "Pais", "Comida Fija", "Por. Peso" }));
         
         for(AnimalViewModel animal : animales){
             ((DefaultTableModel)animalesGrid.getModel()).addRow(new Object[] {
@@ -32,6 +32,7 @@ public class ListarAnimalesView extends javax.swing.JFrame {
                 animal.getPeso(),
                 animal.getSector(),
                 animal.getValorFijo() > 0 ? String.format("%.2f%n Kgs.", animal.getValorFijo()) : "-",
+                animal.getPais(),
                 animal.getPorcentaje() > 0 ? String.format("%.2f %%", animal.getPorcentaje()*100) : "-"
             });
         }
