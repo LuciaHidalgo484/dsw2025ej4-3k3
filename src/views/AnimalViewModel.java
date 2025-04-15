@@ -13,6 +13,7 @@ public class AnimalViewModel{
     private String sector;
     private double peso;
     private double valorFijo;
+    private String pais;
     private double porcentaje;
 
     public AnimalViewModel(Mamifero animal) {
@@ -22,6 +23,7 @@ public class AnimalViewModel{
         sector = animal.getSector().toString();
         peso = animal.getPeso();
         valorFijo = animal instanceof Herbivoro ? ((Herbivoro) animal).getValorFijo() : 0;
+        pais= animal.getPais().toString();
         porcentaje = animal instanceof Carnivoro ? animal.getEspecie().getPorcentajePesoCarnivoro() : 0;
     }
 
@@ -40,6 +42,12 @@ public class AnimalViewModel{
     public double getPeso() {
         return peso;
     }
+
+    public String getPais() {
+        return pais;
+    }
+
+ 
 
     public double getValorFijo() {
         return valorFijo;

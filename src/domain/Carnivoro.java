@@ -1,13 +1,14 @@
 package domain;
 
+
 import java.util.InvalidPropertiesFormatException;
 
 public class Carnivoro extends Mamifero {
     private static double porcentajeExtra = 0.1;
     private static double pesoMaximo = 200;
 
-    public Carnivoro(int edad, double peso, Especie especie, Sector sector) throws InvalidPropertiesFormatException {
-        super(TipoAlimentacion.CARNIVORO, edad, peso, especie, sector);
+    public Carnivoro(int edad, double peso, Especie especie, Sector sector, PaisOficial pais) throws InvalidPropertiesFormatException {
+        super(TipoAlimentacion.CARNIVORO, edad, peso, especie, sector, pais);
     }
 
     public static void setPorcentajeExtra(double porcentajeExtra){
@@ -28,8 +29,8 @@ public class Carnivoro extends Mamifero {
 
     @Override
     public double calcularCantidadDeComida() {
-        double porcentajeASumar = peso > pesoMaximo ? porcentajeExtra : 0;
-        double comida = peso * especie.getPorcentajePesoCarnivoro() * (1 + porcentajeASumar);
+        double porcentajeASumar =getPeso() > pesoMaximo ? porcentajeExtra : 0;
+        double comida = getPeso() * getEspecie().getPorcentajePesoCarnivoro() * (1 + porcentajeASumar);
         return comida;
     }
-}
+}    
